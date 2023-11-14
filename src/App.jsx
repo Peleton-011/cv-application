@@ -29,9 +29,14 @@ function App() {
 			<h1>Henlo</h1>
 			<InfoInput
 				Title="General Information"
-				inputList={inputLists.GeneralInfo}
-				submitText="Submit Now!"
-				submitHandler={submitHandler}
+				inputList={inputLists.GeneralInfo.map((input) => ({
+					...input,
+					value: generalInfo[input.inputName],
+				}))}
+				onChange={(e) => setGeneralInfo({
+					...generalInfo,
+					[e.target.name]: e.target.value,
+				})}
 			/>
 			<div className="education">
 				<h3>Education</h3>
@@ -39,7 +44,7 @@ function App() {
 					<SavedInfo
 						key={educationInfo.id}
 						id={educationInfo.id}
-                        name={educationInfo.schoolName}
+						name={educationInfo.schoolName}
 						infoList={educationInfoList}
 						setInfo={setEducationInfoList}
 					/>
