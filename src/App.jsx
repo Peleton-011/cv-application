@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import InfoInput from "./components/InfoInput";
 import inputLists from "./inputLists";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 
 function App() {
 	const submitHandler = (e) => {
@@ -17,7 +17,7 @@ function App() {
 		email: "",
 	});
 
-	const [educationInfoList, setEducationInfoList] = useState([]);
+	const [educationInfoList, setEducationInfoList] = useState([{schoolName: "Testyy", id: 3}]);
 
 	const [experienceInfoList, setExperienceInfoList] = useState([]);
 
@@ -32,9 +32,22 @@ function App() {
 			/>
 			<div className="education">
 				<h3>Education</h3>
-                {educationInfoList.map((educationInfo) => (
-                    
-                ))}
+				{educationInfoList.map((educationInfo) => (
+					<div key={educationInfo.id}>
+						<h2>{educationInfo.schoolName}</h2>
+						<button
+							onClick={() =>
+								setEducationInfoList(
+									educationInfoList.filter(
+										(info) => info.id !== educationInfo.id
+									)
+								)
+							}
+						>
+							Del
+						</button>
+					</div>
+				))}
 				{
 					<InfoInput
 						Title="Education Information"
