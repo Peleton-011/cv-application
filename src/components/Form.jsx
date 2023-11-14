@@ -1,6 +1,6 @@
 import Input from "./Input";
 
-const Form = ({ formName, inputs = [], submitData = null, onChange }) => {
+const Form = ({ formName, inputList = [], submitData = null, onChange }) => {
 	return (
 		<form
 			onSubmit={
@@ -10,7 +10,7 @@ const Form = ({ formName, inputs = [], submitData = null, onChange }) => {
 			}
 		>
 			<h3>{formName}</h3>
-			{inputs.map(({ inputName, inputID, label, type, value }) => {
+			{inputList.map(({ inputName, inputID, label, type, value }) => {
 				return (
 					<Input
 						key={inputID}

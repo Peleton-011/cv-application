@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import InfoInput from "./components/InfoInput";
+import Form from "./components/Form";
 import inputLists from "./inputLists";
 import { v4 as uuid } from "uuid";
 import SavedInfo from "./components/SavedInfo";
@@ -40,8 +40,8 @@ function App() {
 	return (
 		<>
 			<h1>Henlo</h1>
-			<InfoInput
-				Title="General Information"
+			<Form
+				formName="General Information"
 				inputList={inputLists.GeneralInfo.map((input) => ({
 					...input,
 					value: generalInfo[input.inputName],
@@ -65,8 +65,8 @@ function App() {
 					/>
 				))}
 				{
-					<InfoInput
-						Title="Education Information"
+					<Form
+						formName="Education Information"
 						submitData={{
 							submitText: "Submit Now!",
 							submitHandler: (e) => {
@@ -115,8 +115,8 @@ function App() {
 					/>
 				))}
 				{
-					<InfoInput
-						Title="Experience Information"
+					<Form
+						formName="Experience Information"
 						submitData={{
 							submitText: "Submit Now!",
 							submitHandler: (e) => {
@@ -133,7 +133,7 @@ function App() {
 										endDate: currentExperienceInfo.endDate,
 										description:
 											currentExperienceInfo.description,
-                                        id: uuid(),
+										id: uuid(),
 									},
 								]);
 								setCurrentExperienceInfo({
