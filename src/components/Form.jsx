@@ -23,7 +23,7 @@ const Form = ({ formName, inputs = [], submitData = null, onChange }) => {
 					/>
 				);
 			})}
-			{submitData && <button type="submit">{submitData.submit}</button>}
+			{submitData && <button type="submit">{submitData.submitText}</button>}
 		</form>
 	);
 };
