@@ -21,14 +21,14 @@ const inputList = [
 	{
 		inputName: "name",
 		inputID: "name",
-		label: "Name",
+		label: "Full Name",
 		type: "text",
 	},
 	{
-		inputName: "address",
-		inputID: "address",
-		label: "Address",
-		type: "text",
+		inputName: "email",
+		inputID: "email",
+		label: "Email",
+		type: "email",
 	},
 	{
 		inputName: "phoneNumber",
@@ -37,10 +37,10 @@ const inputList = [
 		type: "phone",
 	},
 	{
-		inputName: "email",
-		inputID: "email",
-		label: "Email",
-		type: "email",
+		inputName: "address",
+		inputID: "address",
+		label: "Address",
+		type: "text",
 	},
 ];
 
