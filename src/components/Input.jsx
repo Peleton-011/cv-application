@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Input = ({ data: { func, funcName, inputName, inputID, setAnswer } }) => {
+const Input = ({ inputName, inputID, label = inputName }) => {
 	return (
 		<div className="inputWrapper">
-			<label htmlFor={inputID}>{inputName}</label>
-			<input type="text" id={inputID} />
-			<button
-				onClick={(e) => {
-					setAnswer(
-						func(e.target.parentElement.querySelector("input").value)
-					);
-				}}
-			>
-				{funcName}
-			</button>
+			<label htmlFor={inputID}>{label}</label>
+			<input type="text" id={inputID} name={inputName} />
 		</div>
 	);
 };

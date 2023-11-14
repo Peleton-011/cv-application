@@ -1,27 +1,40 @@
 import "./App.css";
-import ControlPanel from "./components/ControlPanel";
+import Form from "./components/Form";
 
 function App() {
-	function setAnswer(ans) {
-		console.log(ans);
-	}
-
-	const controlPanelData = {
-		functionList: [
-			{
-				func: (input) => {
-					return input + " :)";
-				},
-				funcName: "test",
-				inputName: "",
-			},
-		],
-		setAnswer,
-	};
 	return (
 		<>
 			<h1>Henlo</h1>
-			<ControlPanel data={controlPanelData} />
+			<Form
+				formName="General Information"
+				inputs={[
+					{
+						inputName: "name",
+						inputID: "name",
+						label: "Name",
+					},
+					{
+						inputName: "address",
+						inputID: "address",
+						label: "Address",
+					},
+					{
+						inputName: "phoneNumber",
+						inputID: "phoneNumber",
+						label: "Phone Number",
+					},
+					{
+						inputName: "email",
+						inputID: "email",
+						label: "Email",
+					},
+				]}
+				submit="Submit Now!"
+				submitHandler={(e) => {
+					e.preventDefault();
+					console.log("Submitted!");
+				}}
+			/>
 		</>
 	);
 }
