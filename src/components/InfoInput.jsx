@@ -1,17 +1,14 @@
 import React from "react";
 import Form from "./Form";
 
-const GeneralInfoInput = () => {
+const GeneralInfoInput = ({Title, inputList, submitText, submitHandler}) => {
 	return (
 		<div>
 			<Form
-				formName="General Information"
+				formName={Title}
 				inputs={inputList}
-				submit="Submit Now!"
-				submitHandler={(e) => {
-					e.preventDefault();
-					console.log("Submitted!");
-				}}
+				submit={submitText}
+				submitHandler={submitHandler}
 			/>
 		</div>
 	);
