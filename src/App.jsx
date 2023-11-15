@@ -2,14 +2,9 @@ import "./App.css";
 import { useState } from "react";
 import Form from "./components/Form";
 import inputLists from "./inputLists";
-import { v4 as uuid } from "uuid";
-import SavedInfo from "./components/SavedInfo";
+import SpecialInfo from "./components/SpecialInfo";
 
 function App() {
-	const submitHandler = (e) => {
-		e.preventDefault();
-		console.log("Submitted!");
-	};
 
 	const [generalInfo, setGeneralInfo] = useState({
 		name: "",
@@ -53,111 +48,22 @@ function App() {
 					})
 				}
 			/>
-			<div className="education">
-				<h3>Education</h3>
-				{educationInfoList.map((educationInfo) => (
-					<SavedInfo
-						key={educationInfo.id}
-						id={educationInfo.id}
-						name={educationInfo.schoolName}
-						infoList={educationInfoList}
-						setInfo={setEducationInfoList}
-					/>
-				))}
-				{
-					<Form
-						formName="Education Information"
-						submitData={{
-							submitText: "Submit Now!",
-							submitHandler: (e) => {
-								e.preventDefault();
-								setEducationInfoList([
-									...educationInfoList,
-									{
-										schoolName:
-											currentEducationInfo.schoolName,
-										degreeName:
-											currentEducationInfo.degreeName,
-										startDate:
-											currentEducationInfo.startDate,
-										id: uuid(),
-									},
-								]);
-								setCurrentEducationInfo({
-									schoolName: "",
-									degreeName: "",
-									startDate: "",
-								});
-							},
-						}}
-						inputList={inputLists.EducationInfo.map((input) => ({
-							...input,
-							value: currentEducationInfo[input.inputName],
-						}))}
-						onChange={(e) =>
-							setCurrentEducationInfo({
-								...currentEducationInfo,
-								[e.target.name]: e.target.value,
-							})
-						}
-					/>
-				}
-			</div>
-			<div className="experience">
-				<h3>Experience</h3>
-				{experienceInfoList.map((experienceInfo) => (
-					<SavedInfo
-						key={experienceInfo.id}
-						id={experienceInfo.id}
-						name={experienceInfo.companyName}
-						infoList={experienceInfoList}
-						setInfo={setExperienceInfoList}
-					/>
-				))}
-				{
-					<Form
-						formName="Experience Information"
-						submitData={{
-							submitText: "Submit Now!",
-							submitHandler: (e) => {
-								e.preventDefault();
-								setExperienceInfoList([
-									...experienceInfoList,
-									{
-										companyName:
-											currentExperienceInfo.companyName,
-										positionName:
-											currentExperienceInfo.positionName,
-										startDate:
-											currentExperienceInfo.startDate,
-										endDate: currentExperienceInfo.endDate,
-										description:
-											currentExperienceInfo.description,
-										id: uuid(),
-									},
-								]);
-								setCurrentExperienceInfo({
-									companyName: "",
-									positionName: "",
-									startDate: "",
-									endDate: "",
-									description: "",
-								});
-							},
-						}}
-						inputList={inputLists.ExperienceInfo.map((input) => ({
-							...input,
-							value: currentExperienceInfo[input.inputName],
-						}))}
-						onChange={(e) =>
-							setCurrentExperienceInfo({
-								...currentExperienceInfo,
-								[e.target.name]: e.target.value,
-							})
-						}
-					/>
-				}
-			</div>
+			<SpecialInfo 
+            	infoList={educationInfoList}
+                setInfoList={setEducationInfoList}
+                currentInfo={currentEducationInfo}
+                setCurrentInfo={setCurrentEducationInfo}
+                inputList={inputLists.EducationInfo}
+                name={"Education"}
+            />
+			<SpecialInfo 
+            	infoList={experienceInfoList}
+                setInfoList={setExperienceInfoList}
+                currentInfo={currentExperienceInfo}
+                setCurrentInfo={setCurrentExperienceInfo}
+                inputList={inputLists.ExperienceInfo}
+                name={"Experience"}
+            />
 		</>
 	);
 }
