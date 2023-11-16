@@ -11,6 +11,7 @@ const SpecialInfo = ({
 	setCurrentInfo,
 	inputList,
 	name,
+	emptyInfo,
 }) => {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -55,7 +56,7 @@ const SpecialInfo = ({
 												: info
 										),
 									]);
-									setCurrentInfo({});
+									setCurrentInfo({ ...emptyInfo });
 									setIsFormOpen(false);
 							  }
 							: (e) => {
@@ -67,7 +68,7 @@ const SpecialInfo = ({
 											id: uuid(),
 										},
 									]);
-									setCurrentInfo({});
+									setCurrentInfo({ ...emptyInfo });
 									setIsFormOpen(false);
 							  },
 						cancelHandler: (e) => {
