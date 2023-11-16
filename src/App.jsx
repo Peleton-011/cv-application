@@ -3,6 +3,7 @@ import { useState } from "react";
 import Form from "./components/Form";
 import inputLists from "./inputLists";
 import SpecialInfo from "./components/SpecialInfo";
+import CVOutput from "./components/CVOutput";
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
 	});
 
 	const [educationInfoList, setEducationInfoList] = useState([
-		{ schoolName: "Testyy", id: 3 },
+
 	]);
 	const [currentEducationInfo, setCurrentEducationInfo] = useState({
 		schoolName: "",
@@ -34,6 +35,8 @@ function App() {
 
 	return (
 		<>
+        <section>
+
 			<h1>Henlo</h1>
 			<Form
 				formName="General Information"
@@ -64,7 +67,9 @@ function App() {
                 inputList={inputLists.ExperienceInfo}
                 name={"Experience"}
             />
-		</>
+        </section>
+		<CVOutput generalInfo={generalInfo} educationInfo={educationInfoList} experienceInfo={experienceInfoList}/>
+        </>
 	);
 }
 
