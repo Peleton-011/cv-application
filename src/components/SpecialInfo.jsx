@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./Form";
 import SavedInfo from "./SavedInfo";
 import { v4 as uuid } from "uuid";
+import { useState } from "react";
 
 const SpecialInfo = ({
 	infoList,
@@ -11,6 +12,8 @@ const SpecialInfo = ({
 	inputList,
 	name,
 }) => {
+	const [isFormOpen, setIsFormOpen] = useState(false);
+
 	const getOnDelete = (id) => {
 		return (e) => {
 			setInfoList(infoList.filter((info) => info.id !== id));
@@ -34,7 +37,7 @@ const SpecialInfo = ({
 					name={info.schoolName || info.positionName}
 				/>
 			))}
-			{
+			{isFormOpen ? (
 				<Form
 					formName={name + " Information"}
 					submitData={{
@@ -49,6 +52,7 @@ const SpecialInfo = ({
 								},
 							]);
 							setCurrentInfo({});
+							setIsFormOpen(false);
 						},
 					}}
 					inputList={inputList.map((input) => ({
@@ -62,7 +66,9 @@ const SpecialInfo = ({
 						})
 					}
 				/>
-			}
+			) : (
+				<button onClick={(e) => setIsFormOpen(true)}>Add {name}</button>
+			)}
 		</div>
 	);
 };
