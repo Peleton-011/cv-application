@@ -22,7 +22,8 @@ const SpecialInfo = ({
 
 	const getOnEdit = (id) => {
 		return (e) => {
-			console.log("editin " + id);
+			setCurrentInfo(infoList.find((info) => info.id === id));
+			setIsFormOpen(true);
 		};
 	};
 
@@ -41,19 +42,34 @@ const SpecialInfo = ({
 				<Form
 					formName={name + " Information"}
 					submitData={{
-						submitText: "Submit Now!",
-						submitHandler: (e) => {
-							e.preventDefault();
-							setInfoList([
-								...infoList,
-								{
-									...currentInfo,
-									id: uuid(),
-								},
-							]);
-							setCurrentInfo({});
-							setIsFormOpen(false);
-						},
+						submitText: currentInfo.id
+							? "Save Changes"
+							: "Submit Now",
+						submitHandler: currentInfo.id
+							? (e) => {
+									e.preventDefault();
+									setInfoList([
+										...infoList.map((info) =>
+											info.id === currentInfo.id
+												? { ...currentInfo, id: uuid() }
+												: info
+										),
+									]);
+									setCurrentInfo({});
+									setIsFormOpen(false);
+							  }
+							: (e) => {
+									e.preventDefault();
+									setInfoList([
+										...infoList,
+										{
+											...currentInfo,
+											id: uuid(),
+										},
+									]);
+									setCurrentInfo({});
+									setIsFormOpen(false);
+							  },
 						cancelHandler: (e) => {
 							e.preventDefault();
 							setCurrentInfo({});
