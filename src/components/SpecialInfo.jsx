@@ -34,7 +34,7 @@ const SpecialInfo = ({
 					key={info.id}
 					onDelete={getOnDelete(info.id)}
 					onEdit={getOnEdit(info.id)}
-					name={info.schoolName || info.positionName}
+					name={info.degreeName || info.positionName}
 				/>
 			))}
 			{isFormOpen ? (
@@ -54,6 +54,12 @@ const SpecialInfo = ({
 							setCurrentInfo({});
 							setIsFormOpen(false);
 						},
+						cancelHandler: (e) => {
+							e.preventDefault();
+							setCurrentInfo({});
+							setIsFormOpen(false);
+						},
+						cancelText: "Cancel",
 					}}
 					inputList={inputList.map((input) => ({
 						...input,

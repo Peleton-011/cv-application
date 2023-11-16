@@ -18,12 +18,17 @@ const Form = ({ formName, inputList = [], submitData = null, onChange }) => {
 						inputID={inputID}
 						label={label}
 						type={type}
-                        value={value}
-                        onChange={onChange}
+						value={value}
+						onChange={onChange}
 					/>
 				);
 			})}
-			{submitData && <button type="submit">{submitData.submitText}</button>}
+			{submitData && submitData.submitHandler && (
+				<button type="submit">{submitData.submitText}</button>
+			)}
+			{submitData && submitData.cancelHandler && (
+				<button onClick={submitData.cancelHandler}>{submitData.cancelText}</button>
+			)}
 		</form>
 	);
 };
