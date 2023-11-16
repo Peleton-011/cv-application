@@ -11,16 +11,27 @@ const SpecialInfo = ({
 	inputList,
 	name,
 }) => {
+	const getOnDelete = (id) => {
+		return (e) => {
+			setInfoList(infoList.filter((info) => info.id !== id));
+		};
+	};
+
+	const getOnEdit = (id) => {
+		return (e) => {
+			console.log("editin " + id);
+		};
+	};
+
 	return (
 		<div>
 			<h3>{name}</h3>
 			{infoList.map((info) => (
 				<SavedInfo
 					key={info.id}
-					id={info.id}
+					onDelete={getOnDelete(info.id)}
+					onEdit={getOnEdit(info.id)}
 					name={info.schoolName || info.positionName}
-					infoList={infoList}
-					setInfo={setInfoList}
 				/>
 			))}
 			{

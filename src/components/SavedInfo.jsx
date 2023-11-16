@@ -1,13 +1,11 @@
 import React from "react";
 
-const SavedInfo = ({ name, id, infoList, setInfoList, onEdit }) => {
+const SavedInfo = ({ name, onDelete, onEdit }) => {
 	return (
 		<div>
 			<h2>{name}</h2>
 			<button
-				onClick={() =>
-					setInfoList(infoList.filter((info) => info.id !== id))
-				}
+				onClick={onDelete}
 			>
 				Del
 			</button>
